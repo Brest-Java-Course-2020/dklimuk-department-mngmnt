@@ -47,8 +47,8 @@ public class DepartmentJdbcDaoImpl implements DepartmentDao{
         @Override
         public Department mapRow(ResultSet resultSet, int i) throws SQLException {
             Department department = new Department();
-            department.setDepartmentId(resultSet.getInt("DEPARTMENT_ID"));
-            department.setDepartmentName(resultSet.getString("DEPARTMENT_NAME"));
+            department.setDepartmentId(resultSet.getInt("DEPARTMENTID"));
+            department.setDepartmentName(resultSet.getString("DEPARTMENTNAME"));
             return department;
         }
     }
