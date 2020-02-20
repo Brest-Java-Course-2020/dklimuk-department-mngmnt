@@ -1,6 +1,8 @@
 package com.epam.brest.courses.dao;
 
 import com.epam.brest.courses.model.Department;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
@@ -10,6 +12,8 @@ import java.util.List;
 
 public class DepartmentJdbcDaoImpl implements DepartmentDao{
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentJdbcDaoImpl.class);
+
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public DepartmentJdbcDaoImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
@@ -18,6 +22,7 @@ public class DepartmentJdbcDaoImpl implements DepartmentDao{
 
     @Override
     public List<Department> getDepartments() {
+        LOGGER.trace("Get all departments");
         List<Department> departments = namedParameterJdbcTemplate
                 .query("SELECT d.departmentId, d.departmentName FROM department d ORDER BY d.departmentName", new DepartmentRowMapper());
         return departments;
