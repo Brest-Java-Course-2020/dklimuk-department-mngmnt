@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/department-management.iml" filepath="$PROJECT_DIR$/department-management.iml" />
+      <module fileurl="file://$PROJECT_DIR$/department-management-dao/department-management-dao.iml" filepath="$PROJECT_DIR$/department-management-dao/department-management-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/department-management-model/department-management-model.iml" filepath="$PROJECT_DIR$/department-management-model/department-management-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/department-management-test/department-management-test.iml" filepath="$PROJECT_DIR$/department-management-test/department-management-test.iml" />
+    </modules>
+  </component>
+</project>

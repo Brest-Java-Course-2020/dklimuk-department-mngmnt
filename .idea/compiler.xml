@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="department-management-test" />
+        <module name="department-management-model" />
+        <module name="department-management-dao" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="departent-management" target="1.8" />
+      <module name="department-management" target="1.8" />
+      <module name="department-management-dao" target="1.8" />
+      <module name="department-management-model" target="1.8" />
+      <module name="department-management-test" target="1.8" />
+      <module name="department-management-web-app" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
