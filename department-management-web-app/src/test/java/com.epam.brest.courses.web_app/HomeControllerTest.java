@@ -40,3 +40,4 @@ public class HomeControllerTest {
                 .andExpect(MockMvcResultMatchers.redirectedUrl("departments"));
     }
 }
+

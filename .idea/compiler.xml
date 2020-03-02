@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="department-management-test" />
+        <module name="department-management-web-app" />
         <module name="department-management-model" />
         <module name="department-management-dao" />
       </profile>
