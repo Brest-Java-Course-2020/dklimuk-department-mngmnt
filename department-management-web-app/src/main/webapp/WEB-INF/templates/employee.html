@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="../../resources/static/css/font-awesome.min.css"
+          th:href="@{/resources/static/css/font-awesome.min.css}">
+    <link rel="stylesheet"
+          href="../../resources/static/css/bootstrap.css"
+          th:href="@{/resources/static/css/bootstrap.css}">
+    <link rel="stylesheet"
+          href="../../resources/static/css/style.css"
+          th:href="@{/resources/static/css/style.css}">
+    <title>Edit Employee</title>
+</head>
+<body>
+
+<header>
+    <nav class="pl-2 navbar navbar-expand-sm navbar-dark bg-dark text-light  p-0">
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a href="/" class="navbar-brand"><img src="../../resources/static/img/logo.svg"
+                                              th:src="@{/resources/static/img/logo.svg}"
+                                              height="32" width="32" alt="HR"></a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <a class="nav-item nav-link"
+                   href="departments.html"
+                   th:href="@{/departments}">Departments</a>
+                <a class="nav-item nav-link active"
+                   href="employees.html"
+                   th:href="@{/employees}">Employees</a>
+            </ul>
+        </div>
+    </nav>
+    <nav id="main-header"
+         class="py-1 mb-3 navbar navbar-expand-sm navbar-light bg-light text-dark">
+
+        <ul class="navbar-nav float-lg-left">
+            <li class="nav-item"
+                title="Back to list"
+                data-toggle="tooltip"
+                data-placement="bottom"><a href="employees.html"
+                                           th:href="@{/employees}"
+                                           class="btn btn-light btn-block"><i
+                    class="fa fa-arrow-left"></i></a></li>
+        </ul>
+        <span class="navbar-brand text-uppercase mr-auto">Edit employee</span>
+    </nav>
+</header>
+
+<section id="employee">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label class="form-control-label"
+                                       for="field_department">Department</label>
+                                <select class="form-control"
+                                        id="field_department">
+                                    <option value="0">CEO</option>
+                                    <option value="1">Accounting</option>
+                                    <option value="2">Java</option>
+                                    <option value="3">Testing</option>
+                                    <option value="4">People management</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label"
+                                       for="field_employeeName">Employee Name</label>
+                                <input class="form-control"
+                                       id="field_employeeName"
+                                       type="text"
+                                       value="Ivan Ivanov"/>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a href="employees.html"
+                                   th:href="@{/employees}"
+                                   class="btn btn-light mr-1"
+                                   title="Cancel"
+                                   data-toggle="tooltip"
+                                   data-placement="top">
+                                    Cancel</a>
+                                <a href="employees.html"
+                                   th:href="@{/employees}"
+                                   class="btn btn-primary"
+                                   title="Save employee"
+                                   data-toggle="tooltip"
+                                   data-placement="top">
+                                    <i class="d-none d-sm-inline fa fa-save"></i> Save</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <hr/>
+    <p class="text-center">&copy; 2020</p>
+</footer>
+
+<script src="../../resources/static/js/jquery-3.4.1.slim.min.js"
+        th:src="@{/resources/static/js/jquery-3.4.1.slim.min.js}"></script>
+<script src="../../resources/static/js/popper.min.js"
+        th:src="@{/resources/static/js/popper.min.js}"></script>
+<script src="../../resources/static/js/bootstrap.min.js"
+        th:src="@{/resources/static/js/bootstrap.min.js}"></script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+</body>
+</html>

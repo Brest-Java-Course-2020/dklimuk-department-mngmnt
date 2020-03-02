@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="../../resources/static/css/font-awesome.min.css"
+          th:href="@{/resources/static/css/font-awesome.min.css}">
+    <link rel="stylesheet"
+          href="../../resources/static/css/bootstrap.css"
+          th:href="@{/resources/static/css/bootstrap.css}">
+    <link rel="stylesheet"
+          href="../../resources/static/css/style.css"
+          th:href="@{/resources/static/css/style.css}">
+    <title>Departments</title>
+</head>
+<body>
+
+<header>
+    <nav class="pl-2 navbar navbar-expand-sm navbar-dark bg-dark text-light  p-0">
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a href="/" class="navbar-brand"><img src="../../resources/static/img/logo.svg"
+                                              th:src="@{/resources/static/img/logo.svg}"
+                                              height="32" width="32" alt="HR"></a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <a class="nav-item nav-link active"
+                   href="departments.html"
+                   th:href="@{/departments}">Departments</a>
+                <a class="nav-item nav-link"
+                   href="employees.html"
+                   th:href="@{/employees}">Employees</a>
+            </ul>
+        </div>
+    </nav>
+    <nav id="main-header"
+         class="py-1 mb-3 navbar navbar-expand-sm navbar-light bg-light text-dark">
+        <span class="navbar-brand text-uppercase mr-auto">Departments</span>
+        <ul class="navbar-nav float-right">
+            <li class="nav-item">
+                <a href="department.html"
+                   th:href="@{/department}"
+                   class="btn btn-light"
+                   title="Add department"
+                   data-toggle="tooltip"
+                   data-placement="bottom">
+                    <i class="fa fa-plus"></i> <span
+                        class="d-none d-sm-inline">Add</span></a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<section id="departments">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Avg salary</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>CEO</td>
+                            <td>10000</td>
+                            <td class="text-right">
+                                <a href="department.html"
+                                   th:href="@{/department}"
+                                   class="btn-sm btn-outline-secondary"
+                                   title="Edit department"
+                                   data-toggle="tooltip"
+                                   data-placement="top">
+                                    <i class="fa fa-pencil"></i> <span
+                                        class="d-none d-md-inline">Edit</span></a>
+                                <span data-toggle="modal" data-target="#deleteDialog">
+                                <a href="#" class="btn-sm btn-outline-secondary"
+                                   title="delete department"
+                                   data-toggle="tooltip"
+                                   data-placement="top">
+                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;Accounting</td>
+                            <td>2500</td>
+                            <td class="text-right">
+                                <a href="department.html"
+                                   th:href="@{/department}"
+                                   class="btn-sm btn-outline-secondary"
+                                   title="Edit department"
+                                   data-toggle="tooltip"
+                                   data-placement="top">
+                                    <i class="fa fa-pencil"></i> <span
+                                        class="d-none d-md-inline">Edit</span></a>
+                                <span data-toggle="modal" data-target="#deleteDialog">
+                                <a href="#" class="btn-sm btn-outline-secondary"
+                                   title="delete department"
+                                   data-toggle="tooltip"
+                                   data-placement="top">
+                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;Development</td>
+                            <td>1150</td>
+                            <td class="text-right">
+                                <a href="department.html"
+                                   th:href="@{/department}"
+                                   class="btn-sm btn-outline-secondary"
+                                   title="Edit department"
+                                   data-toggle="tooltip"
+                                   data-placement="top">
+                                    <i class="fa fa-pencil"></i> <span
+                                        class="d-none d-md-inline">Edit</span></a>
+                                <span data-toggle="modal" data-target="#deleteDialog">
+                                <a href="#" class="btn-sm btn-outline-secondary"
+                                   title="delete department"
+                                   data-toggle="tooltip"
+                                   data-placement="top">
+                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;Java</td>
+                            <td>1500</td>
+                            <td class="text-right">
+                                <a href="department.html"
+                                   th:href="@{/department}"
+                                   class="btn-sm btn-outline-secondary"
+                                   title="Edit department"
+                                   data-toggle="tooltip"
+                                   data-placement="top">
+                                    <i class="fa fa-pencil"></i> <span
+                                        class="d-none d-md-inline">Edit</span></a>
+                                <span data-toggle="modal" data-target="#deleteDialog">
+                                <a href="#" class="btn-sm btn-outline-secondary"
+                                   title="delete department"
+                                   data-toggle="tooltip"
+                                   data-placement="top">
+                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;Testing</td>
+                            <td>1100</td>
+                            <td class="text-right">
+                                <a href="department.html"
+                                   th:href="@{/department}"
+                                   class="btn-sm btn-outline-secondary"
+                                   title="Edit department"
+                                   data-toggle="tooltip"
+                                   data-placement="top">
+                                    <i class="fa fa-pencil"></i> <span
+                                        class="d-none d-md-inline">Edit</span></a>
+                                <span data-toggle="modal" data-target="#deleteDialog">
+                                <a href="#" class="btn-sm btn-outline-secondary"
+                                   title="delete department"
+                                   data-toggle="tooltip"
+                                   data-placement="top">
+                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;People management</td>
+                            <td>800</td>
+                            <td class="text-right">
+                                <a href="department.html"
+                                   th:href="@{/department}"
+                                   class="btn-sm btn-outline-secondary"
+                                   title="Edit department"
+                                   data-toggle="tooltip"
+                                   data-placement="top">
+                                    <i class="fa fa-pencil"></i> <span
+                                        class="d-none d-md-inline">Edit</span></a>
+                                <span data-toggle="modal" data-target="#deleteDialog">
+                                <a href="#" class="btn-sm btn-outline-secondary"
+                                   title="delete department"
+                                   data-toggle="tooltip"
+                                   data-placement="top">
+                                    <i class="fa fa-remove"></i> <span class="d-none d-md-inline">Delete</span></a>
+                                </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <hr/>
+    <p class="text-center">&copy; 2020</p>
+</footer>
+
+<!-- Confirm delete Modal -->
+<div class="modal fade" id="deleteDialog" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header alert-danger">
+                <h5 class="modal-title" id="exampleModalLabel">Delete department</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Please confirm delete
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../resources/static/js/jquery-3.4.1.slim.min.js"
+        th:src="@{/resources/static/js/jquery-3.4.1.slim.min.js}"></script>
+<script src="../../resources/static/js/popper.min.js"
+        th:src="@{/resources/static/js/popper.min.js}"></script>
+<script src="../../resources/static/js/bootstrap.min.js"
+        th:src="@{/resources/static/js/bootstrap.min.js}"></script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+</body>
+</html>
