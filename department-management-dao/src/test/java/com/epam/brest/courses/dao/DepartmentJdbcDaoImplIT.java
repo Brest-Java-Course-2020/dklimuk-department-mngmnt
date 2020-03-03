@@ -62,7 +62,25 @@ public class DepartmentJdbcDaoImplIT {
     }
 
     @Test
-    public void deleteDepartment() {
+    public void shouldDeleteDepartment() {
+        // given
+        Department department = new Department()
+                .setDepartmentName(RandomStringUtils.randomAlphabetic(DEPARTMENT_NAME_SIZE));
+        Integer id = departmentDao.create(department);
+
+        List<Department> departments = departmentDao.findAll();
+        assertNotNull(departments);
+
+        // when
+        int result = departmentDao.delete(id);
+
+        // then
+        assertTrue(result == 1);
+
+        List<Department> currentDepartments = departmentDao.findAll();
+        assertNotNull(currentDepartments);
+
+        assertTrue(departments.size()-1 == currentDepartments.size());
     }
 
 }
