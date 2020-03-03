@@ -32,6 +32,9 @@ public class DepartmentJdbcDaoImpl implements DepartmentDao{
     @Value("${department.findById}")
     private String findByIdSql;
 
+    @Value("${department.delete}")
+    private String deleteSql;
+
     private final DepartmentRowMapper departmentRowMapper = new DepartmentRowMapper();
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -80,7 +83,9 @@ public class DepartmentJdbcDaoImpl implements DepartmentDao{
     public int delete(Integer departmentId) {
 
         LOGGER.debug("delete(departmentId:{})", departmentId);
-        throw new UnsupportedOperationException();
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue(DEPARTMENT_ID, departmentId);
+        return namedParameterJdbcTemplate.update(deleteSql, mapSqlParameterSource);
 
     }
 

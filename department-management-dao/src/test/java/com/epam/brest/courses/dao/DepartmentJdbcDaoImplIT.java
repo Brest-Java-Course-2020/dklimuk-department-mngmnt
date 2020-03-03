@@ -58,7 +58,31 @@ public class DepartmentJdbcDaoImplIT {
     }
 
     @Test
-    public void updateDepartment() {
+    public void shouldUpdateDepartment() {
+
+        // given
+        Department department = new Department()
+                .setDepartmentName(RandomStringUtils.randomAlphabetic(DEPARTMENT_NAME_SIZE));
+        Integer id = departmentDao.create(department);
+        assertNotNull(id);
+
+        Optional<Department> departmentOptional = departmentDao.findById(id);
+        Assertions.assertTrue(departmentOptional.isPresent());
+
+        departmentOptional.get().
+                setDepartmentName(RandomStringUtils.randomAlphabetic(DEPARTMENT_NAME_SIZE));
+
+        // when
+        int result = departmentDao.update(departmentOptional.get());
+
+        // then
+        assertTrue(1 == result);
+
+        Optional<Department> updatedDepartmentOptional = departmentDao.findById(id);
+        Assertions.assertTrue(updatedDepartmentOptional.isPresent());
+        assertEquals(updatedDepartmentOptional.get().getDepartmentId(), id);
+        assertEquals(updatedDepartmentOptional.get().getDepartmentName(),departmentOptional.get().getDepartmentName());
+
     }
 
     @Test
@@ -75,7 +99,7 @@ public class DepartmentJdbcDaoImplIT {
         int result = departmentDao.delete(id);
 
         // then
-        assertTrue(result == 1);
+        assertTrue(1 == result);
 
         List<Department> currentDepartments = departmentDao.findAll();
         assertNotNull(currentDepartments);
