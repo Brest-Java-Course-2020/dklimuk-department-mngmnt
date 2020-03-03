@@ -9,6 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
@@ -19,10 +20,11 @@ public class DepartmentJdbcDaoImplIT {
     private DepartmentDao departmentDao;
 
     @Test
-    public void getDepartments() {
+    public void shouldFindAllDepartments() {
 
-        List<Department> departments = departmentDao.getDepartments();
+        List<Department> departments = departmentDao.findAll();
         assertNotNull(departments);
+        assertTrue(departments.size() > 0);
     }
 
     @Test
