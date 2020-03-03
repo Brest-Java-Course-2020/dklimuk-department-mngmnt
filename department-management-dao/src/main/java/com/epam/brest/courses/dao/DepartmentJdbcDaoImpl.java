@@ -4,9 +4,11 @@ import com.epam.brest.courses.model.Department;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -27,6 +29,9 @@ public class DepartmentJdbcDaoImpl implements DepartmentDao{
     @Value("${department.create}")
     private String createSql;
 
+    @Value("${department.findById}")
+    private String findByIdSql;
+
     private final DepartmentRowMapper departmentRowMapper = new DepartmentRowMapper();
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -45,7 +50,11 @@ public class DepartmentJdbcDaoImpl implements DepartmentDao{
     public Optional<Department> findById(Integer departmentId) {
 
         LOGGER.debug("findById(id:{})", departmentId);
-        throw new UnsupportedOperationException();
+        SqlParameterSource namedParameters = new MapSqlParameterSource(DEPARTMENT_ID, departmentId);
+        // Note: don't use queryForObject to reduce exception handling
+        // there is possible solution with BeanPropertyRowMapper.newInstance(Department.class)
+        List<Department> results = namedParameterJdbcTemplate.query(findByIdSql, namedParameters, departmentRowMapper);
+        return Optional.ofNullable(DataAccessUtils.uniqueResult(results));
     }
 
     @Override
