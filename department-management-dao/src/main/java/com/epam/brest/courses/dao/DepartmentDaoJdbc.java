@@ -14,20 +14,25 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static com.epam.brest.courses.constants.DepartmentConstants.*;
 
-public class DepartmentJdbcDaoImpl implements DepartmentDao{
+public class DepartmentDaoJdbc implements DepartmentDao{
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentJdbcDaoImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentDaoJdbc.class);
 
     @Value("${department.select}")
     private String selectSql;
 
     @Value("${department.create}")
     private String createSql;
+
+    @Value("${department.update}")
+    private String updateSql;
 
     @Value("${department.findById}")
     private String findByIdSql;
@@ -38,7 +43,7 @@ public class DepartmentJdbcDaoImpl implements DepartmentDao{
     private final DepartmentRowMapper departmentRowMapper = new DepartmentRowMapper();
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public DepartmentJdbcDaoImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public DepartmentDaoJdbc(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
@@ -75,7 +80,10 @@ public class DepartmentJdbcDaoImpl implements DepartmentDao{
     public int update(Department department) {
 
         LOGGER.debug("update(department:{})", department);
-        throw new UnsupportedOperationException();
+        Map<String, Object> params = new HashMap<>();
+        params.put(DEPARTMENT_ID, department.getDepartmentId());
+        params.put(DEPARTMENT_NAME, department.getDepartmentName());
+        return namedParameterJdbcTemplate.update(updateSql, params);
 
     }
 

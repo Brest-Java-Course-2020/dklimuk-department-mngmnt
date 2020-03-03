@@ -23,10 +23,10 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-public class DepartmentJdbcDAOImplMockTest {
+public class DepartmentDaoJdbcMockTest {
 
     @InjectMocks
-    private DepartmentJdbcDaoImpl departmentDao;
+    private DepartmentDaoJdbc departmentDao;
 
     @Mock
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
