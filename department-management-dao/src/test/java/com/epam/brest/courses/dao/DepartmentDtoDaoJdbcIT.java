@@ -27,4 +27,5 @@ class DepartmentDtoDaoJdbcIT {
         assertTrue(departments.size() > 0);
         assertTrue(departments.get(0).getAvgSalary().intValue() > 0);
     }
+
 }
