@@ -10,16 +10,18 @@ public class Department {
         return departmentId;
     }
 
-    public void setDepartmentId(Integer departmentId) {
+    public Department setDepartmentId(Integer departmentId) {
         this.departmentId = departmentId;
+        return this;
     }
 
     public String getDepartmentName() {
         return departmentName;
     }
 
-    public void setDepartmentName(String departmentName) {
+    public Department setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
+        return this;
     }
 
     @Override
