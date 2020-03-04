@@ -14,6 +14,8 @@
         <module>department-management-dao</module>
         <module>department-management-test</module>
         <module>department-management-web-app</module>
+        <module>department-management-service-api</module>
+        <module>department-management-service</module>
     </modules>
 
     <properties>
@@ -41,6 +43,21 @@
                 <artifactId>department-management-dao</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+
+            <dependency>
+                <groupId>com.epam.brest.courses</groupId>
+                <artifactId>departent-management-service-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.epam.brest.courses</groupId>
+                <artifactId>department-management-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
 
             <dependency>
                 <groupId>com.epam.brest.courses</groupId>
