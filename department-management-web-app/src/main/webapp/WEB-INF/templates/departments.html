@@ -68,9 +68,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>CEO</td>
-                            <td>10000</td>
+                        <tr th:each="department : ${departments}">
+                            <td th:text="${department.departmentName}">CEO</td>
+                            <td th:text="${department.avgSalary}">10000</td>
                             <td class="text-right">
                                 <a href="department.html"
                                    th:href="@{/department}"
@@ -89,7 +89,7 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr th:remove="all">
                             <td>&nbsp;&nbsp;Accounting</td>
                             <td>2500</td>
                             <td class="text-right">
@@ -110,7 +110,7 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr th:remove="all">
                             <td>&nbsp;&nbsp;Development</td>
                             <td>1150</td>
                             <td class="text-right">
@@ -131,7 +131,7 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr th:remove="all">
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;Java</td>
                             <td>1500</td>
                             <td class="text-right">
@@ -152,7 +152,7 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr th:remove="all">
                             <td>&nbsp;&nbsp;&nbsp;&nbsp;Testing</td>
                             <td>1100</td>
                             <td class="text-right">
@@ -173,7 +173,7 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr th:remove="all">
                             <td>&nbsp;&nbsp;People management</td>
                             <td>800</td>
                             <td class="text-right">
