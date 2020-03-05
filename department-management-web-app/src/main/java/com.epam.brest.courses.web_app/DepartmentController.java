@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Optional;
 
@@ -59,6 +60,18 @@ public class DepartmentController {
             // TODO department not found - pass error message as parameter or handle not found error
             return "redirect:departments";
         }
+    }
+    /**
+     * Update department.
+     *
+     * @return view name
+     */
+    @PostMapping(value = "/department/{id}")
+    public String updateDepartment(Department department) {
+
+        LOGGER.debug("updateDepartment({})", department);
+        this.departmentService.update(department);
+        return "redirect:/departments";
     }
     /**
      * Goto department page.

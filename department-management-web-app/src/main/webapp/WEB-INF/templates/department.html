@@ -56,7 +56,15 @@
                 <div class="card">
                     <div class="card-body">
                         <form id="departmentForm"
-                              th:object="${department}">
+                              th:object="${department}"
+                              action="departments.html"
+                              th:action="@{${#httpServletRequest.servletPath}}"
+                              th:method="@{post}">
+
+                            <input id="field_departmentId"
+                                   type="hidden"
+                                   th:field="*{departmentId}"/>
+
                             <div class="form-group">
                                 <label class="form-control-label"
                                        for="field_departmentName">Department Name</label>
@@ -75,6 +83,7 @@
                                     Cancel</a>
                                 <a href="departments.html"
                                    th:href="@{/departments}"
+                                   th:onclick="@{document.forms['departmentForm'].submit(); return false;}"
                                    class="btn btn-primary"
                                    title="Save department"
                                    data-toggle="tooltip"

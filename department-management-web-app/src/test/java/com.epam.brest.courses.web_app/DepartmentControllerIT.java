@@ -1,9 +1,11 @@
 package com.epam.brest.courses.web_app;
 
+import com.epam.brest.courses.model.Department;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -17,8 +19,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.math.BigDecimal;
 
 import static org.hamcrest.Matchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
@@ -84,6 +85,24 @@ class DepartmentControllerIT {
                 MockMvcRequestBuilders.get("/department/99999")
         ).andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isFound())
-                .andExpect(MockMvcResultMatchers.redirectedUrl("departments"));
+                .andExpect(redirectedUrl("departments"));
+    }
+
+    @Test
+    public void shouldUpdateDepartmentAfterEdit() throws Exception {
+
+        Department department = new Department()
+                .setDepartmentId(1)
+                .setDepartmentName("test");
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/department/1")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("departmentId", "1")
+                        .param("departmentName", "test")
+                        .sessionAttr("department", department)
+        ).andExpect(status().isFound())
+                .andExpect(view().name("redirect:/departments"))
+                .andExpect(redirectedUrl("/departments"));
     }
 }
