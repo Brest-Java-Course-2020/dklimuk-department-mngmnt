@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.math.BigDecimal;
@@ -24,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = {"classpath:app-context-test.xml"})
+@Transactional
 class DepartmentControllerIT {
 
     @Autowired
@@ -124,6 +126,15 @@ class DepartmentControllerIT {
                 MockMvcRequestBuilders.post("/department")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("departmentName", "test")
+        ).andExpect(status().isFound())
+                .andExpect(view().name("redirect:/departments"))
+                .andExpect(redirectedUrl("/departments"));
+    }
+    @Test
+    public void shouldDeleteDepartment() throws Exception {
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/department/3/delete")
         ).andExpect(status().isFound())
                 .andExpect(view().name("redirect:/departments"))
                 .andExpect(redirectedUrl("/departments"));
