@@ -54,6 +54,7 @@ public class DepartmentController {
         LOGGER.debug("gotoEditDepartmentPage({},{})", id, model);
         Optional<Department> optionalDepartment = departmentService.findById(id);
         if (optionalDepartment.isPresent()) {
+            model.addAttribute("isNew", false);
             model.addAttribute("department", optionalDepartment.get());
             return "department";
         } else {
@@ -74,13 +75,29 @@ public class DepartmentController {
         return "redirect:/departments";
     }
     /**
-     * Goto department page.
+     * Goto add department page.
      *
      * @return view name
      */
     @GetMapping(value = "/department")
     public final String gotoAddDepartmentPage(Model model) {
 
+        LOGGER.debug("gotoAddDepartmentPage({})", model);
+        model.addAttribute("isNew", true);
+        model.addAttribute("department", new Department());
         return "department";
+    }
+    /**
+     * Persist new department into persistence storage.
+     *
+     * @param department new department with filled data.
+     * @return view name
+     */
+    @PostMapping(value = "/department")
+    public String addDepartment(Department department) {
+
+        LOGGER.debug("addDepartment({})", department);
+        this.departmentService.create(department);
+        return "redirect:/departments";
     }
 }
