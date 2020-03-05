@@ -20,7 +20,7 @@
 
         <dependency>
             <groupId>com.epam.brest.courses</groupId>
-            <artifactId>department-management-test</artifactId>
+            <artifactId>department-management-test-db</artifactId>
         </dependency>
 
         <dependency>
