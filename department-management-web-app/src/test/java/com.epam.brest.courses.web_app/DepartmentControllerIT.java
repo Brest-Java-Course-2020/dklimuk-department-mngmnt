@@ -65,4 +65,25 @@ class DepartmentControllerIT {
                         )
                 )));
     }
+    @Test
+    public void shouldOpenEditDepartmentPageById() throws Exception {
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/department/1")
+        ).andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType("text/html;charset=UTF-8"))
+                .andExpect(view().name("department"))
+                .andExpect(model().attribute("department", hasProperty("departmentId", is(1))))
+                .andExpect(model().attribute("department", hasProperty("departmentName", is("DEV"))));
+    }
+
+    @Test
+    public void shouldReturnToDepartmentsPageIfDepartmentNotFoundById() throws Exception {
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/department/99999")
+        ).andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isFound())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("departments"));
+    }
 }
