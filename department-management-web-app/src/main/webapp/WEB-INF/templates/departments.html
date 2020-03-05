@@ -73,7 +73,7 @@
                             <td th:text="${department.avgSalary}">10000</td>
                             <td class="text-right">
                                 <a href="department.html"
-                                   th:href="@{/department}"
+                                   th:href="@{|/department/${department.departmentId}|}"
                                    class="btn-sm btn-outline-secondary"
                                    title="Edit department"
                                    data-toggle="tooltip"

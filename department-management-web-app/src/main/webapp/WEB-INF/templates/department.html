@@ -55,20 +55,15 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <form >
+                        <form id="departmentForm"
+                              th:object="${department}">
                             <div class="form-group">
                                 <label class="form-control-label"
                                        for="field_departmentName">Department Name</label>
                                 <input class="form-control "
                                        id="field_departmentName"
-                                       type="text" value="CEO"/>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label"
-                                       for="field_description">Description</label>
-                                <input class="form-control"
-                                       id="field_description"
-                                       type="text" value="CEO department">
+                                       type="text" value="CEO"
+                                       th:field="*{departmentName}"/>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <a href="departments.html"
