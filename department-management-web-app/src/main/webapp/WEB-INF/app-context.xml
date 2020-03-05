@@ -20,7 +20,36 @@
     <!-- Component scan for @Controller, @Service... annotations -->
     <context:component-scan base-package="com.epam.brest.courses.*"/>
 
-    <context:property-placeholder location="classpath:application.properties"/>
+    <import resource="classpath*:test-db.xml"/>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:application.properties</value>
+                <value>classpath:dao.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="departmentService" class="com.epam.brest.courses.service.DepartmentServiceImpl">
+        <constructor-arg ref="departmentDao"/>
+    </bean>
+
+    <bean id="departmentDtoService" class="com.epam.brest.courses.service.DepartmentDtoServiceImpl">
+        <constructor-arg ref="departmentDtoDao"/>
+    </bean>
+
+    <bean id="departmentDao" class="com.epam.brest.courses.dao.DepartmentDaoJdbc">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="departmentDtoDao" class="com.epam.brest.courses.dao.DepartmentDtoDaoJdbc">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
+    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
 
     <!-- Thymeleaf Template Resolver -->
     <bean id="templateResolver"

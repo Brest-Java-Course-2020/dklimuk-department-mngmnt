@@ -22,6 +22,22 @@
         </dependency>
 
         <dependency>
+            <groupId>com.epam.brest.courses</groupId>
+            <artifactId>department-management-test-db</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.brest.courses</groupId>
+            <artifactId>department-management-dao</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.brest.courses</groupId>
+            <artifactId>department-management-service-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.brest.courses</groupId>
+            <artifactId>department-management-service</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
