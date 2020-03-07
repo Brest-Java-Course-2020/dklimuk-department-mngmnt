@@ -4,6 +4,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean id="employeeService" class="com.epam.brest.courses.service.EmployeeServiceImpl">
+        <constructor-arg ref="employeeDao"/>
+    </bean>
+
+    <bean id="employeeDao" class="com.epam.brest.courses.dao.EmployeeDaoJdbc">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+
     <bean id="departmentService" class="com.epam.brest.courses.service.DepartmentServiceImpl">
         <constructor-arg ref="departmentDao"/>
     </bean>
