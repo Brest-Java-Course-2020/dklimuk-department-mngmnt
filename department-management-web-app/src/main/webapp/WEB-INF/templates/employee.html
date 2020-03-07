@@ -47,7 +47,8 @@
                                            class="btn btn-light btn-block"><i
                     class="fa fa-arrow-left"></i></a></li>
         </ul>
-        <span class="navbar-brand text-uppercase mr-auto">Edit employee</span>
+        <span class="navbar-brand text-uppercase mr-auto"
+              th:text="${isNew} ? 'New employee' : 'Edit employee'">Edit employee</span>
     </nav>
 </header>
 
@@ -57,26 +58,89 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form id="employeeForm"
+                              th:object="${employee}"
+                              action="employees.html"
+                              th:action="@{${#httpServletRequest.servletPath}}"
+                              th:method="@{post}">
+
+                            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                                <p>Please fix errors below:</p>
+                            </div>
+
+                            <input id="field_employeeId"
+                                   type="hidden"
+                                   th:field="*{employeeId}"/>
                             <div class="form-group">
                                 <label class="form-control-label"
                                        for="field_department">Department</label>
                                 <select class="form-control"
-                                        id="field_department">
-                                    <option value="0">CEO</option>
-                                    <option value="1">Accounting</option>
-                                    <option value="2">Java</option>
-                                    <option value="3">Testing</option>
-                                    <option value="4">People management</option>
+                                        id="field_department"
+                                        th:field="*{departmentId}">
+                                    <option th:each="department : ${departments}"
+                                            value="0" th:value="${department.departmentId}"
+                                            th:text="${department.departmentName}">CEO</option>
+                                    <option th:remove="all"
+                                            value="1">Accounting</option>
+                                    <option th:remove="all"
+                                            value="2">Java</option>
+                                    <option th:remove="all"
+                                            value="3">Testing</option>
+                                    <option th:remove="all"
+                                            value="4">People management</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label class="form-control-label"
-                                       for="field_employeeName">Employee Name</label>
-                                <input class="form-control"
-                                       id="field_employeeName"
-                                       type="text"
-                                       value="Ivan Ivanov"/>
+                                       for="field_firstname">Firstname</label>
+                                <input class="form-control "
+                                       th:class="${#fields.hasErrors('firstname')} ? 'form-control is-invalid' : 'form-control'"
+                                       id="field_firstname"
+                                       type="text" value="Ivan"
+                                       th:field="*{firstname}"/>
+                                <div th:if="${#fields.hasErrors('firstname')}"
+                                     class="invalid-feedback"
+                                     th:errors="*{firstname}">[errors]</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label"
+                                       for="field_lastname">Lastname</label>
+                                <input class="form-control "
+                                       th:class="${#fields.hasErrors('lastname')} ? 'form-control is-invalid' : 'form-control'"
+                                       id="field_lastname"
+                                       type="text" value="Ivan"
+                                       th:field="*{lastname}"/>
+                                <div th:if="${#fields.hasErrors('lastname')}"
+                                     class="invalid-feedback"
+                                     th:errors="*{lastname}">[errors]</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label"
+                                       for="field_email">Email</label>
+                                <input class="form-control "
+                                       th:class="${#fields.hasErrors('email')} ? 'form-control is-invalid' : 'form-control'"
+                                       id="field_email"
+                                       type="text" value="Ivan"
+                                       th:field="*{email}"/>
+                                <div th:if="${#fields.hasErrors('email')}"
+                                     class="invalid-feedback"
+                                     th:errors="*{email}">[errors]</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label"
+                                       for="field_salary">Salary</label>
+                                <input class="form-control "
+                                       th:class="${#fields.hasErrors('salary')} ? 'form-control is-invalid' : 'form-control'"
+                                       id="field_salary"
+                                       type="text" value="Ivan"
+                                       th:field="*{salary}"/>
+                                <div th:if="${#fields.hasErrors('salary')}"
+                                     class="invalid-feedback"
+                                     th:errors="*{salary}">[errors]</div>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <a href="employees.html"
@@ -88,6 +152,7 @@
                                     Cancel</a>
                                 <a href="employees.html"
                                    th:href="@{/employees}"
+                                   th:onclick="@{document.forms['employeeForm'].submit(); return false;}"
                                    class="btn btn-primary"
                                    title="Save employee"
                                    data-toggle="tooltip"
