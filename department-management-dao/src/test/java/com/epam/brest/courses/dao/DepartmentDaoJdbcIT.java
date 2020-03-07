@@ -20,8 +20,12 @@ import org.apache.commons.lang3.RandomStringUtils;
 @ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:test-dao.xml", "classpath:dao.xml"})
 public class DepartmentDaoJdbcIT {
 
+    private final DepartmentDao departmentDao;
+
     @Autowired
-    private DepartmentDao departmentDao;
+    public DepartmentDaoJdbcIT(DepartmentDao departmentDao) {
+        this.departmentDao = departmentDao;
+    }
 
     @Test
     public void shouldFindAllDepartments() {
