@@ -32,6 +32,14 @@
         </property>
     </bean>
 
+    <bean id="employeeService" class="com.epam.brest.courses.service.EmployeeServiceImpl">
+        <constructor-arg ref="employeeDao"/>
+    </bean>
+
+    <bean id="employeeDao" class="com.epam.brest.courses.dao.EmployeeDaoJdbc">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
     <bean id="departmentService" class="com.epam.brest.courses.service.DepartmentServiceImpl">
         <constructor-arg ref="departmentDao"/>
     </bean>
