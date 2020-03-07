@@ -1,6 +1,7 @@
 package com.epam.brest.courses.web_app;
 
 import com.epam.brest.courses.model.Department;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,6 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.math.BigDecimal;
 
+import static com.epam.brest.courses.constants.DepartmentConstants.DEPARTMENT_NAME_SIZE;
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -108,6 +110,25 @@ class DepartmentControllerIT {
                 .andExpect(view().name("redirect:/departments"))
                 .andExpect(redirectedUrl("/departments"));
     }
+
+    @Test
+    public void shouldRejectUpdateDepartmentOnLargeDepartmentName() throws Exception {
+
+        Department department = new Department()
+                .setDepartmentId(1)
+                .setDepartmentName(RandomStringUtils.randomAlphabetic(DEPARTMENT_NAME_SIZE + 1));
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/department/1")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("departmentId", "1")
+                        .param("departmentName", department.getDepartmentName())
+                        .sessionAttr("department", department)
+        ).andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("department"));
+    }
+
     @Test
     public void shouldOpenNewDepartmentPage() throws Exception {
         mockMvc.perform(
@@ -130,6 +151,17 @@ class DepartmentControllerIT {
                 .andExpect(view().name("redirect:/departments"))
                 .andExpect(redirectedUrl("/departments"));
     }
+    @Test
+    public void shouldRejectAddDepartmentOnLargeDepartmentName() throws Exception {
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/department")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("departmentName", RandomStringUtils.randomAlphabetic(DEPARTMENT_NAME_SIZE + 1))
+        ).andExpect(status().isOk())
+                .andExpect(view().name("department"));
+    }
+
     @Test
     public void shouldDeleteDepartment() throws Exception {
 

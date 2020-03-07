@@ -1,0 +1,2 @@
+departmentName.empty=Please provide department name
+departmentName.maxSize=Department name size have to be <= 20 symbols
