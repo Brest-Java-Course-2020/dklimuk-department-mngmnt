@@ -1,4 +1,4 @@
-package com.epam.brest.courses.rest_app;
+package com.epam.brest.courses.rest;
 
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;

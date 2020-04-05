@@ -40,6 +40,9 @@ public class DepartmentDaoJdbc implements DepartmentDao{
     @Value("${department.delete}")
     private String deleteSql;
 
+    private static final String CHECK_COUNT_NAME = "select count(department_id) from department where lower(department_name) = lower(:departmentName)";
+
+
     private final DepartmentRowMapper departmentRowMapper = new DepartmentRowMapper();
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -69,11 +72,21 @@ public class DepartmentDaoJdbc implements DepartmentDao{
     public Integer create(Department department) {
 
         LOGGER.debug("create(department:{})", department);
+
+        if (!isNameUnique(department)) {
+            throw new IllegalArgumentException("Department with the same name already exsists in DB.");
+        }
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue(DEPARTMENT_NAME, department.getDepartmentName());
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(createSql, params, keyHolder);
         return keyHolder.getKey().intValue();
+    }
+
+    private boolean isNameUnique(Department department) {
+        return namedParameterJdbcTemplate.queryForObject(CHECK_COUNT_NAME,
+                new MapSqlParameterSource(DEPARTMENT_NAME, department.getDepartmentName()),
+                Integer.class) == 0;
     }
 
     @Override

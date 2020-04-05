@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/department-management-dao/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/department-management-dao/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/department-management-model/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/department-management-rest-app/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/department-management-service-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/department-management-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/department-management-test-db/src/main/resources" charset="UTF-8" />

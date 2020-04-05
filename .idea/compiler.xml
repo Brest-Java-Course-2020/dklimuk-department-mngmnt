@@ -11,6 +11,7 @@
         <module name="department-management-service" />
         <module name="department-management-test-db" />
         <module name="department-management-service-api" />
+        <module name="department-management-rest-app" />
         <module name="department-management-dao" />
       </profile>
     </annotationProcessing>
@@ -19,6 +20,7 @@
       <module name="department-management" target="1.8" />
       <module name="department-management-dao" target="1.8" />
       <module name="department-management-model" target="1.8" />
+      <module name="department-management-rest-app" target="1.8" />
       <module name="department-management-service" target="1.8" />
       <module name="department-management-service-api" target="1.8" />
       <module name="department-management-test-db" target="1.8" />
