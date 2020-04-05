@@ -157,10 +157,10 @@
         th:src="@{/resources/static/js/bootstrap.min.js}"></script>
 <script>
     $('#deleteDialog').on('show.bs.modal', function (event) {
-        var target = $(event.relatedTarget)
-        $(this).find('.modal-body').text('Please confirm delete employee: "' + target.data('name') + '"')
+        var target = $(event.relatedTarget);
+        $(this).find('.modal-body').text('Please confirm delete employee: "' + target.data('name') + '"');
         document.getElementById('deleteUrl').href = '/employee/' + target.data('id') + '/delete';
-    })
+    });
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })

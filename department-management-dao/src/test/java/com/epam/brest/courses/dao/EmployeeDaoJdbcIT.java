@@ -52,7 +52,7 @@ public class EmployeeDaoJdbcIT {
                 .setFirstname(RandomStringUtils.randomAlphabetic(EMPLOYEE_FIRSTNAME_SIZE))
                 .setLastname(RandomStringUtils.randomAlphabetic(EMPLOYEE_LASTNAME_SIZE))
                 .setEmail(RandomStringUtils.randomAlphabetic(EMPLOYEE_EMAIL_SIZE))
-                .setSalary(Double.valueOf(100))
+                .setSalary(100d)
                 .setDepartmentId(1);
         Integer id = employeeDao.create(employee);
 
@@ -74,7 +74,7 @@ public class EmployeeDaoJdbcIT {
                 .setFirstname(RandomStringUtils.randomAlphabetic(EMPLOYEE_FIRSTNAME_SIZE))
                 .setLastname(RandomStringUtils.randomAlphabetic(EMPLOYEE_LASTNAME_SIZE))
                 .setEmail(RandomStringUtils.randomAlphabetic(EMPLOYEE_EMAIL_SIZE))
-                .setSalary(Double.valueOf(100))
+                .setSalary(100d)
                 .setDepartmentId(1);
         Integer id = employeeDao.create(employee);
         assertNotNull(id);
@@ -88,7 +88,7 @@ public class EmployeeDaoJdbcIT {
                 .setFirstname(RandomStringUtils.randomAlphabetic(EMPLOYEE_FIRSTNAME_SIZE))
                 .setLastname(RandomStringUtils.randomAlphabetic(EMPLOYEE_LASTNAME_SIZE))
                 .setEmail(RandomStringUtils.randomAlphabetic(EMPLOYEE_EMAIL_SIZE))
-                .setSalary(Double.valueOf(100))
+                .setSalary(100d)
                 .setDepartmentId(1);
         Integer id = employeeDao.create(employee);
         assertNotNull(id);
@@ -119,7 +119,7 @@ public class EmployeeDaoJdbcIT {
                 .setFirstname(RandomStringUtils.randomAlphabetic(EMPLOYEE_FIRSTNAME_SIZE))
                 .setLastname(RandomStringUtils.randomAlphabetic(EMPLOYEE_LASTNAME_SIZE))
                 .setEmail(RandomStringUtils.randomAlphabetic(EMPLOYEE_EMAIL_SIZE))
-                .setSalary(Double.valueOf(100))
+                .setSalary(100d)
                 .setDepartmentId(1);
         Integer id = employeeDao.create(employee);
 

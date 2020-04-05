@@ -53,7 +53,7 @@ class EmployeeServiceImplIT {
                 .setFirstname(RandomStringUtils.randomAlphabetic(EMPLOYEE_FIRSTNAME_SIZE))
                 .setLastname(RandomStringUtils.randomAlphabetic(EMPLOYEE_LASTNAME_SIZE))
                 .setEmail(RandomStringUtils.randomAlphabetic(EMPLOYEE_EMAIL_SIZE))
-                .setSalary(Double.valueOf(100))
+                .setSalary(100d)
                 .setDepartmentId(1);
         Integer id = employeeService.create(employee);
 
@@ -75,7 +75,7 @@ class EmployeeServiceImplIT {
                 .setFirstname(RandomStringUtils.randomAlphabetic(EMPLOYEE_FIRSTNAME_SIZE))
                 .setLastname(RandomStringUtils.randomAlphabetic(EMPLOYEE_LASTNAME_SIZE))
                 .setEmail(RandomStringUtils.randomAlphabetic(EMPLOYEE_EMAIL_SIZE))
-                .setSalary(Double.valueOf(100))
+                .setSalary(100d)
                 .setDepartmentId(1);
         Integer id = employeeService.create(employee);
         assertNotNull(id);
@@ -89,7 +89,7 @@ class EmployeeServiceImplIT {
                 .setFirstname(RandomStringUtils.randomAlphabetic(EMPLOYEE_FIRSTNAME_SIZE))
                 .setLastname(RandomStringUtils.randomAlphabetic(EMPLOYEE_LASTNAME_SIZE))
                 .setEmail(RandomStringUtils.randomAlphabetic(EMPLOYEE_EMAIL_SIZE))
-                .setSalary(Double.valueOf(100))
+                .setSalary(100d)
                 .setDepartmentId(1);
         Integer id = employeeService.create(employee);
         assertNotNull(id);
@@ -120,7 +120,7 @@ class EmployeeServiceImplIT {
                 .setFirstname(RandomStringUtils.randomAlphabetic(EMPLOYEE_FIRSTNAME_SIZE))
                 .setLastname(RandomStringUtils.randomAlphabetic(EMPLOYEE_LASTNAME_SIZE))
                 .setEmail(RandomStringUtils.randomAlphabetic(EMPLOYEE_EMAIL_SIZE))
-                .setSalary(Double.valueOf(100))
+                .setSalary(100d)
                 .setDepartmentId(1);
         Integer id = employeeService.create(employee);
 

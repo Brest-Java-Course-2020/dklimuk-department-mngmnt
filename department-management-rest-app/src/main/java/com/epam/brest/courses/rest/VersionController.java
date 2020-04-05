@@ -13,6 +13,11 @@ public class VersionController {
 
     private final static String VERSION = "0.0.1";
 
+    /**
+     * Get current version.
+     *
+     * @return version
+     */
     @GetMapping(value = "/version")
     public String version() {
         return VERSION;

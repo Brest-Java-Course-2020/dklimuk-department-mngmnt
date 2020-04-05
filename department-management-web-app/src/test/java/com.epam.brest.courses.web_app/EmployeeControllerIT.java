@@ -61,7 +61,7 @@ class EmployeeControllerIT {
                                 hasProperty("firstname", is("FUSER11")),
                                 hasProperty("lastname", is("LUSER11")),
                                 hasProperty("email", is("email11@mail.com")),
-                                hasProperty("salary", is(Double.valueOf(200)))
+                                hasProperty("salary", is(200d))
                         )
                 )))
         ;
@@ -80,7 +80,7 @@ class EmployeeControllerIT {
                 .andExpect(model().attribute("employee", hasProperty("firstname", is("FUSER10"))))
                 .andExpect(model().attribute("employee", hasProperty("lastname", is("LUSER10"))))
                 .andExpect(model().attribute("employee", hasProperty("email", is("email10@mail.com"))))
-                .andExpect(model().attribute("employee", hasProperty("salary", is(Double.valueOf(100)))))
+                .andExpect(model().attribute("employee", hasProperty("salary", is(100d))))
                 .andExpect(model().attribute("departments", hasItem(
                         allOf(
                                 hasProperty("departmentId", is(1)),
@@ -107,7 +107,7 @@ class EmployeeControllerIT {
                 .setFirstname(RandomStringUtils.randomAlphabetic(EMPLOYEE_FIRSTNAME_SIZE))
                 .setLastname(RandomStringUtils.randomAlphabetic(EMPLOYEE_LASTNAME_SIZE))
                 .setEmail(RandomStringUtils.randomAlphabetic(EMPLOYEE_EMAIL_SIZE))
-                .setSalary(Double.valueOf(100))
+                .setSalary(100d)
                 .setDepartmentId(1);
 
         mockMvc.perform(
@@ -150,7 +150,7 @@ class EmployeeControllerIT {
                 .setFirstname(RandomStringUtils.randomAlphabetic(EMPLOYEE_FIRSTNAME_SIZE))
                 .setLastname(RandomStringUtils.randomAlphabetic(EMPLOYEE_LASTNAME_SIZE))
                 .setEmail(RandomStringUtils.randomAlphabetic(EMPLOYEE_EMAIL_SIZE))
-                .setSalary(Double.valueOf(100))
+                .setSalary(100d)
                 .setDepartmentId(1);
 
         mockMvc.perform(

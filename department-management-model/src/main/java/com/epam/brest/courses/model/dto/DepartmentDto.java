@@ -98,7 +98,7 @@ public class DepartmentDto {
     @Override
     public String toString() {
         return "DepartmentDto{"
-                + "departentId=" + departmentId
+                + "departmentId=" + departmentId
                 + ", departmentName='" + departmentName + '\''
                 + ", avgSalary=" + avgSalary
                 + '}';

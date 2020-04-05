@@ -72,19 +72,4 @@ public class DepartmentDaoJdbcMockTest {
     }
 
 
-    @Test
-    public void getDepartmentById() {
-    }
-
-    @Test
-    public void addDepartment() {
-    }
-
-    @Test
-    public void updateDepartment() {
-    }
-
-    @Test
-    public void deleteDepartment() {
-    }
 }

@@ -14,6 +14,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static com.epam.brest.courses.constants.EmployeeConstants.*;
@@ -60,9 +61,7 @@ public class EmployeeDaoJdbc implements EmployeeDao {
     public List<Employee> findAll() {
 
         LOGGER.trace("findAll()");
-        List<Employee> employees =
-                namedParameterJdbcTemplate.query(SELECT_ALL, BeanPropertyRowMapper.newInstance(Employee.class));
-        return employees;
+        return namedParameterJdbcTemplate.query(SELECT_ALL, BeanPropertyRowMapper.newInstance(Employee.class));
     }
 
     @Override
@@ -70,9 +69,8 @@ public class EmployeeDaoJdbc implements EmployeeDao {
 
         LOGGER.trace("findByDepartmentId(departmentId:{})", departmentId);
         SqlParameterSource namedParameters = new MapSqlParameterSource(DEPARTMENT_ID, departmentId);
-        List<Employee> results = namedParameterJdbcTemplate.query(FIND_BY_DEPARTMENT_ID, namedParameters,
+        return namedParameterJdbcTemplate.query(FIND_BY_DEPARTMENT_ID, namedParameters,
                 BeanPropertyRowMapper.newInstance(Employee.class));
-        return results;
     }
 
     @Override
@@ -98,7 +96,7 @@ public class EmployeeDaoJdbc implements EmployeeDao {
 
         KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(ADD_EMPLOYEE, parameters, generatedKeyHolder);
-        return generatedKeyHolder.getKey().intValue();
+        return Objects.requireNonNull(generatedKeyHolder.getKey()).intValue();
     }
 
     @Override

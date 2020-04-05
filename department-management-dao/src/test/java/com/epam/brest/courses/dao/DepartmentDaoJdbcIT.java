@@ -62,6 +62,20 @@ public class DepartmentDaoJdbcIT {
     }
 
     @Test
+    public void shouldFailOnCreateDepartmentWithDuplicateName() {
+        Department department1 = new Department()
+                .setDepartmentName(RandomStringUtils.randomAlphabetic(DEPARTMENT_NAME_SIZE));
+        Integer id = departmentDao.create(department1);
+        assertNotNull(id);
+
+        Department department2 = new Department()
+                .setDepartmentName(department1.getDepartmentName());
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> departmentDao.create(department2));
+    }
+
+
+    @Test
     public void shouldUpdateDepartment() {
 
         // given

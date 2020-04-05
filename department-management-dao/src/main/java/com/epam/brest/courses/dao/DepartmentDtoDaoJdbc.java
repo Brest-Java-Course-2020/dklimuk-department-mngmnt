@@ -32,9 +32,8 @@ public class DepartmentDtoDaoJdbc implements DepartmentDtoDao {
     public List<DepartmentDto> findAllWithAvgSalary() {
 
         LOGGER.debug("findAllWithAvgSalary()");
-        List<DepartmentDto> departments = namedParameterJdbcTemplate.query(findAllWithAvgSalarySql,
+        return namedParameterJdbcTemplate.query(findAllWithAvgSalarySql,
                 BeanPropertyRowMapper.newInstance(DepartmentDto.class));
-        return departments;
     }
 
 }
