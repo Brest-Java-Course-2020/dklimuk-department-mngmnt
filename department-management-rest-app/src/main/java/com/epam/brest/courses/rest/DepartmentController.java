@@ -10,11 +10,9 @@ import com.epam.brest.courses.service.DepartmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Collection;
 
-@EnableSwagger2
 @RestController
 public class DepartmentController {
 
