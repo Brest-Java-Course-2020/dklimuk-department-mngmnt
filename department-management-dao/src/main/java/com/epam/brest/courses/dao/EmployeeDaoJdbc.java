@@ -3,6 +3,7 @@ package com.epam.brest.courses.dao;
 import com.epam.brest.courses.model.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -29,29 +30,24 @@ public class EmployeeDaoJdbc implements EmployeeDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentDaoJdbc.class);
 
-    private final static String SELECT_ALL =
-            "select employee_id, firstname, lastname, email, salary, department_id from employee order by firstname, lastname";
+    @Value("${employee.findAll}")
+    private String findAllSql;
 
-    private static final String FIND_BY_ID =
-            "select employee_id, firstname, lastname, email, salary, department_id " +
-                    "from employee where employee_id = :employeeId";
+    @Value("${employee.findById}")
+    private String findByIdSql;
 
-    private static final String FIND_BY_DEPARTMENT_ID =
-            "select employee_id, firstname, lastname, email, salary, department_id " +
-                    "from employee where department_id = :departmentId";
-
-    private final static String ADD_EMPLOYEE =
-            "insert into employee (firstname, lastname, email, salary, department_id) " +
-                    "values (:firstname, :lastname, :email, :salary, :departmentId)";
-
-    private static final String UPDATE =
-            "update employee set firstname = :firstname, lastname = :lastname, email = :email, " +
-                    "salary = :salary, department_id = :departmentId where employee_id = :employeeId";
-
-    private static final String DELETE =
-            "delete from employee where employee_id = :employeeId";
+    @Value("${employee.findByDepartmentId}")
+    private String findByDepartmentIdSql;
 
 
+    @Value("${employee.create}")
+    private String createSql;
+
+    @Value("${employee.update}")
+    private String updateSql;
+
+    @Value("${employee.delete}")
+    private String deleteSql;
 
     public EmployeeDaoJdbc(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
@@ -61,7 +57,7 @@ public class EmployeeDaoJdbc implements EmployeeDao {
     public List<Employee> findAll() {
 
         LOGGER.trace("findAll()");
-        return namedParameterJdbcTemplate.query(SELECT_ALL, BeanPropertyRowMapper.newInstance(Employee.class));
+        return namedParameterJdbcTemplate.query(findAllSql, BeanPropertyRowMapper.newInstance(Employee.class));
     }
 
     @Override
@@ -69,7 +65,7 @@ public class EmployeeDaoJdbc implements EmployeeDao {
 
         LOGGER.trace("findByDepartmentId(departmentId:{})", departmentId);
         SqlParameterSource namedParameters = new MapSqlParameterSource(DEPARTMENT_ID, departmentId);
-        return namedParameterJdbcTemplate.query(FIND_BY_DEPARTMENT_ID, namedParameters,
+        return namedParameterJdbcTemplate.query(findByDepartmentIdSql, namedParameters,
                 BeanPropertyRowMapper.newInstance(Employee.class));
     }
 
@@ -78,7 +74,7 @@ public class EmployeeDaoJdbc implements EmployeeDao {
 
         LOGGER.debug("findById(employeeId:{})", employeeId);
         SqlParameterSource namedParameters = new MapSqlParameterSource(EMPLOYEE_ID, employeeId);
-        List<Employee> results = namedParameterJdbcTemplate.query(FIND_BY_ID, namedParameters,
+        List<Employee> results = namedParameterJdbcTemplate.query(findByIdSql, namedParameters,
                 BeanPropertyRowMapper.newInstance(Employee.class));
         return Optional.ofNullable(DataAccessUtils.uniqueResult(results));
     }
@@ -95,7 +91,7 @@ public class EmployeeDaoJdbc implements EmployeeDao {
         parameters.addValue(DEPARTMENT_ID, employee.getDepartmentId());
 
         KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
-        namedParameterJdbcTemplate.update(ADD_EMPLOYEE, parameters, generatedKeyHolder);
+        namedParameterJdbcTemplate.update(createSql, parameters, generatedKeyHolder);
         return Objects.requireNonNull(generatedKeyHolder.getKey()).intValue();
     }
 
@@ -103,7 +99,7 @@ public class EmployeeDaoJdbc implements EmployeeDao {
     public int update(Employee employee) {
 
         LOGGER.debug("update(employee:{})", employee);
-        return namedParameterJdbcTemplate.update(UPDATE, new BeanPropertySqlParameterSource(employee));
+        return namedParameterJdbcTemplate.update(updateSql, new BeanPropertySqlParameterSource(employee));
     }
 
     @Override
@@ -112,7 +108,7 @@ public class EmployeeDaoJdbc implements EmployeeDao {
         LOGGER.debug("delete(employeeId:{})", employeeId);
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(EMPLOYEE_ID, employeeId);
-        return namedParameterJdbcTemplate.update(DELETE, mapSqlParameterSource);
+        return namedParameterJdbcTemplate.update(deleteSql, mapSqlParameterSource);
     }
 
 }
