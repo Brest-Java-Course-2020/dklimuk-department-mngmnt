@@ -22,10 +22,10 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 @ExtendWith(MockitoExtension.class)
-class DepartmentControllerTest {
+class DepartmentDtoControllerTest {
 
     @InjectMocks
-    private DepartmentController controller;
+    private DepartmentDtoController departmentDtoController;
 
     @Mock
     private DepartmentDtoService departmentDtoService;
@@ -34,7 +34,7 @@ class DepartmentControllerTest {
 
     @BeforeEach
     public void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(controller)
+        mockMvc = MockMvcBuilders.standaloneSetup(departmentDtoController)
                 .build();
     }
 
@@ -44,12 +44,12 @@ class DepartmentControllerTest {
     }
 
     @Test
-    public void version() throws Exception {
+    public void shouldFindAllWithAvgSalary() throws Exception {
 
         Mockito.when(departmentDtoService.findAllWithAvgSalary()).thenReturn(Arrays.asList(create(0), create(1)));
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/departments")
+                MockMvcRequestBuilders.get("/department_dtos")
         ).andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"))

@@ -19,11 +19,9 @@ public class DepartmentController {
     private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
 
     private final DepartmentService departmentService;
-    private final DepartmentDtoService departmentDtoService;
 
-    public DepartmentController(DepartmentService departmentService, DepartmentDtoService departmentDtoService) {
+    public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
-        this.departmentDtoService = departmentDtoService;
     }
 
     /**
@@ -32,10 +30,10 @@ public class DepartmentController {
      * @return view name
      */
     @GetMapping(value = "/departments")
-    public final Collection<DepartmentDto> departments() {
+    public final Collection<Department> departments() {
 
         LOGGER.debug("departments()");
-        return departmentDtoService.findAllWithAvgSalary();
+        return departmentService.findAll();
     }
 
     @GetMapping("/departments/{id}")
