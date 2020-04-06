@@ -27,8 +27,7 @@ import static com.epam.brest.courses.constants.DepartmentConstants.DEPARTMENT_NA
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -184,8 +183,17 @@ public class DepartmentControllerIT {
             return objectMapper.readValue(response.getContentAsString(), Integer.class);
         }
 
-        public int update(Department department) {
-            return 0;
+        private int update(Department department) throws Exception {
+
+            LOGGER.debug("update({})", department);
+            MockHttpServletResponse response =
+                    mockMvc.perform(put(DEPARTMENTS_ENDPOINT)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(department))
+                            .accept(MediaType.APPLICATION_JSON)
+                    ).andExpect(status().isOk())
+                            .andReturn().getResponse();
+            return objectMapper.readValue(response.getContentAsString(), Integer.class);
         }
 
         public int delete(Integer departmentId) {

@@ -50,4 +50,12 @@ public class DepartmentController {
         Integer id = departmentService.create(department);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
+
+    @PutMapping(value = "/departments", consumes = {"application/json"}, produces = {"application/json"})
+    public ResponseEntity<Integer> updateDepartment(@RequestBody Department department) {
+
+        LOGGER.debug("updateDepartment({})", department);
+        int result = departmentService.update(department);
+        return new ResponseEntity(result, HttpStatus.OK);
+    }
 }
