@@ -43,6 +43,9 @@ class EmployeeServiceImplIT {
         List<Employee> employees = employeeService.findByDepartmentId(1);
         assertNotNull(employees);
         assertTrue(employees.size() > 0);
+        for (Employee employee: employees) {
+            assertEquals(Integer.valueOf(1), employee.getDepartmentId());
+        }
     }
 
     @Test

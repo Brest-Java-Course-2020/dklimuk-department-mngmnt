@@ -33,7 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> findByDepartmentId(Integer departmentId) {
         LOGGER.trace("findByDepartmentId(departmentId:{})", departmentId);
-        return employeeDao.findAll();
+        return employeeDao.findByDepartmentId(departmentId);
     }
 
     @Override
