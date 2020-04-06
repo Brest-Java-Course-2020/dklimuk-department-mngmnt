@@ -32,6 +32,16 @@
         </property>
     </bean>
 
+    <bean id="departmentController" class="com.epam.brest.courses.web_app.DepartmentController">
+        <constructor-arg index="0" ref="departmentDtoService"/>
+        <constructor-arg index="1" ref="departmentService"/>
+    </bean>
+
+    <bean id="employeeController" class="com.epam.brest.courses.web_app.EmployeeController">
+        <constructor-arg index="0" ref="departmentService"/>
+        <constructor-arg index="1" ref="employeeService"/>
+    </bean>
+
     <bean id="employeeService" class="com.epam.brest.courses.service.EmployeeServiceImpl">
         <constructor-arg ref="employeeDao"/>
     </bean>

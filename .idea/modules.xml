@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/department-management-rest-app/department-management-rest-app.iml" filepath="$PROJECT_DIR$/department-management-rest-app/department-management-rest-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/department-management-service/department-management-service.iml" filepath="$PROJECT_DIR$/department-management-service/department-management-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/department-management-service-api/department-management-service-api.iml" filepath="$PROJECT_DIR$/department-management-service-api/department-management-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/department-management-service-rest/department-management-service-rest.iml" filepath="$PROJECT_DIR$/department-management-service-rest/department-management-service-rest.iml" />
       <module fileurl="file://$PROJECT_DIR$/department-management-test-db/department-management-test-db.iml" filepath="$PROJECT_DIR$/department-management-test-db/department-management-test-db.iml" />
       <module fileurl="file://$PROJECT_DIR$/department-management-web-app/department-management-web-app.iml" filepath="$PROJECT_DIR$/department-management-web-app/department-management-web-app.iml" />
     </modules>

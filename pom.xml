@@ -17,6 +17,7 @@
         <module>department-management-service-api</module>
         <module>department-management-service</module>
         <module>department-management-rest-app</module>
+        <module>department-management-service-rest</module>
     </modules>
 
     <properties>
@@ -65,6 +66,18 @@
             <dependency>
                 <groupId>com.epam.brest.courses</groupId>
                 <artifactId>department-management-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.epam.brest.courses</groupId>
+                <artifactId>department-management-service-rest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.epam.brest.courses</groupId>
+                <artifactId>department-management-rest-app</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
