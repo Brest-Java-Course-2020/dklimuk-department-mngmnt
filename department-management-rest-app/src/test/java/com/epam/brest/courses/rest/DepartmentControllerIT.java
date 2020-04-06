@@ -28,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -68,12 +69,23 @@ public class DepartmentControllerIT {
     }
 
     @Test
-    public void shouldFindDepartmentById() {
+    public void shouldCreateDepartment() throws Exception {
+        Department department = new Department()
+                .setDepartmentName(RandomStringUtils.randomAlphabetic(DEPARTMENT_NAME_SIZE));
+        Integer id = departmentService.create(department);
+        assertNotNull(id);
+    }
+
+    @Test
+    public void shouldFindDepartmentById() throws Exception {
 
         // given
         Department department = new Department()
                 .setDepartmentName(RandomStringUtils.randomAlphabetic(DEPARTMENT_NAME_SIZE));
         Integer id = departmentService.create(department);
+
+        assertNotNull(id);
+
 
         // when
         Optional<Department> optionalDepartment = departmentService.findById(id);
@@ -84,16 +96,9 @@ public class DepartmentControllerIT {
         assertEquals(optionalDepartment.get().getDepartmentName(), department.getDepartmentName());
     }
 
-    @Test
-    public void shouldCreateDepartment() {
-        Department department = new Department()
-                .setDepartmentName(RandomStringUtils.randomAlphabetic(DEPARTMENT_NAME_SIZE));
-        Integer id = departmentService.create(department);
-        assertNotNull(id);
-    }
 
     @Test
-    public void shouldUpdateDepartment() {
+    public void shouldUpdateDepartment() throws Exception {
 
         // given
         Department department = new Department()
@@ -155,12 +160,28 @@ public class DepartmentControllerIT {
             return objectMapper.readValue(response.getContentAsString(), new TypeReference<List<Department>>() {});
         }
 
-        public Optional<Department> findById(Integer departmentId) {
-            return Optional.empty();
+        public Optional<Department> findById(Integer departmentId) throws Exception {
+
+            LOGGER.debug("findById({})", departmentId);
+            MockHttpServletResponse response = mockMvc.perform(get(DEPARTMENTS_ENDPOINT + "/" + departmentId)
+                    .accept(MediaType.APPLICATION_JSON)
+            ).andExpect(status().isOk())
+                    .andReturn().getResponse();
+            return Optional.of(objectMapper.readValue(response.getContentAsString(), Department.class));
         }
 
-        public Integer create(Department department) {
-            return null;
+        public Integer create(Department department) throws Exception {
+
+            LOGGER.debug("create({})", department);
+            String json = objectMapper.writeValueAsString(department);
+            MockHttpServletResponse response =
+                    mockMvc.perform(post(DEPARTMENTS_ENDPOINT)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(json)
+                            .accept(MediaType.APPLICATION_JSON)
+                    ).andExpect(status().isOk())
+                            .andReturn().getResponse();
+            return objectMapper.readValue(response.getContentAsString(), Integer.class);
         }
 
         public int update(Department department) {

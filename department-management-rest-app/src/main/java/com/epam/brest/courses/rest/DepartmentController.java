@@ -2,13 +2,13 @@ package com.epam.brest.courses.rest;
 
 
 import com.epam.brest.courses.model.Department;
-import com.epam.brest.courses.model.dto.DepartmentDto;
 import com.epam.brest.courses.rest.exception.DepartmentNotFoundException;
 
-import com.epam.brest.courses.service.DepartmentDtoService;
 import com.epam.brest.courses.service.DepartmentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -44,8 +44,10 @@ public class DepartmentController {
     }
 
     @PostMapping(path = "/departments", consumes = "application/json", produces = "application/json")
-    public Integer add(@RequestBody String departmentName) {
-        LOGGER.debug("add department with name({})", departmentName);
-        return departmentService.create(new Department(departmentName));
+    public ResponseEntity<Integer> createDepartment(@RequestBody Department department) {
+
+        LOGGER.debug("createDepartment({})", department);
+        Integer id = departmentService.create(department);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }
