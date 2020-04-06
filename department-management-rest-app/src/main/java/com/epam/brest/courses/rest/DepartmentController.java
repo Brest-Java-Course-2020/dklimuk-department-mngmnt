@@ -58,4 +58,11 @@ public class DepartmentController {
         int result = departmentService.update(department);
         return new ResponseEntity(result, HttpStatus.OK);
     }
+
+    @DeleteMapping(value = "/departments/{id}", produces = {"application/json"})
+    public ResponseEntity<Integer> deleteDepartment(@PathVariable Integer id) {
+
+        int result = departmentService.delete(id);
+        return new ResponseEntity(result, HttpStatus.OK);
+    }
 }

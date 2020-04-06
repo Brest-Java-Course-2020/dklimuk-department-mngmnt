@@ -17,6 +17,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -196,8 +197,17 @@ public class DepartmentControllerIT {
             return objectMapper.readValue(response.getContentAsString(), Integer.class);
         }
 
-        public int delete(Integer departmentId) {
-            return 0;
+        private int delete(Integer departmentId) throws Exception {
+
+            LOGGER.debug("delete(id:{})", departmentId);
+            MockHttpServletResponse response = mockMvc.perform(
+                    MockMvcRequestBuilders.delete(new StringBuilder(DEPARTMENTS_ENDPOINT).append("/")
+                            .append(departmentId).toString())
+                            .accept(MediaType.APPLICATION_JSON)
+            ).andExpect(status().isOk())
+                    .andReturn().getResponse();
+
+            return objectMapper.readValue(response.getContentAsString(), Integer.class);
         }
     }
 }
